@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    					http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<global-method-security pre-post-annotations="enabled" />
+	
+    <http use-expressions="true">     	     
+        <intercept-url pattern="/**" access="permitAll" />    	
+    	<form-login login-processing-url="/j_spring_security_check" login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=t"/>
+        <logout logout-url="/j_spring_security_logout" logout-success-url="/"/>       
+    </http>
+    
+    <authentication-manager>
+    	<authentication-provider>
+    		<jdbc-user-service data-source-ref="dataSource" users-by-username-query="select email as username, password, true from person where email = ?"/>
+    	</authentication-provider>
+    </authentication-manager>
+
+    
+	
+	<!-- These beans are only created to pre-populate an admin user -->
+	<beans:bean id="adminUser" class="net.stsmedia.financemanager.domain.Person">
+		<beans:property name="firstName" value="Super" />
+		<beans:property name="lastName" value="Admin" />		
+		<!-- this is the login email for the admin user -->
+		<beans:property name="email" value="super@admin.com" />
+		<!-- and this is the password -->
+		<beans:property name="password" value="admin" />
+		<beans:property name="address">
+			<beans:bean class="net.stsmedia.financemanager.domain.Address">
+				<beans:property name="streetName" value="Some Street" />
+				<beans:property name="streetNumber" value="99" />
+				<beans:property name="city" value="SpringField" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="adminAuthority" class="net.stsmedia.financemanager.security.Authorities">
+		<beans:property name="authority" value="ROLE_ADMIN" />
+		<beans:property name="username" value="super@admin.com" />
+	</beans:bean>
+	
+</beans:beans>

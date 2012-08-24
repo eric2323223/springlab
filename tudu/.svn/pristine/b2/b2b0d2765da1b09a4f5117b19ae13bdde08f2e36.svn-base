@@ -1,0 +1,16 @@
+<dataset>
+  <property pkey="smtp.from" value="Tudu Lists"/>
+  <property pkey="smtp.host" value="localhost"/>
+  <property pkey="smtp.password" value=""/>
+  <property pkey="smtp.port" value="25"/>
+  <property pkey="smtp.user" value=""/>
+  <role role="ROLE_ADMIN"/>
+  <role role="ROLE_USER"/>
+  <todo id="4028808209512fbe010951309a4b0002" creation_date="2006-02-10 00:41:13.0" description="First todo" priority="100" completed="0" todo_list_id="4028808209512fbe0109513057f00001"/>
+  <todo id="4028808209512fbe01095130c9b20003" creation_date="2006-02-10 00:41:25.0" description="Second Todo" priority="50" completed="0" todo_list_id="4028808209512fbe0109513057f00001"/>
+  <todo_list id="4028808209512fbe0109513057f00001" name="A Todo List" rss_allowed="1" last_update="2006-02-10 00:41:25.0"/>
+  <user login="admin" password="admin" enabled="1" first_name="" last_name="" email="" creation_date="2000-01-01 00:00:00.0" last_access_date="2000-01-01 00:00:00.0"/>
+  <user_role login="admin" role="ROLE_ADMIN"/>
+  <user_role login="admin" role="ROLE_USER"/>
+  <user_todo_list login="admin" listId="4028808209512fbe0109513057f00001"/>
+</dataset>

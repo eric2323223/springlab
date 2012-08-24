@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- datasource connection properties -->
+		<property name="connection.datasource">java:comp/env/jdbc/tudu</property>
+
+        <!-- dialect for HSQLDB -->
+        <property name="dialect">
+			org.hibernate.dialect.HSQLDialect
+		</property>
+
+		<property name="auto.ddl">true</property>
+        <property name="hibernate.cache.provider_class">
+			org.hibernate.cache.EhCacheProvider
+		</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.transaction.factory_class">
+			org.hibernate.transaction.JDBCTransactionFactory
+		</property>
+		<!-- mapping files -->
+        <mapping resource="tudu/domain/model/Todo.hbm.xml"/>
+		<mapping resource="tudu/domain/model/TodoList.hbm.xml"/>
+		<mapping resource="tudu/domain/model/User.hbm.xml"/>
+		<mapping resource="tudu/domain/model/Role.hbm.xml"/>
+		<mapping resource="tudu/domain/model/Property.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

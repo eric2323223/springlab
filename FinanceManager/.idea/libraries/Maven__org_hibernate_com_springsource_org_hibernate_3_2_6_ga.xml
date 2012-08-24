@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.hibernate:com.springsource.org.hibernate:3.2.6.ga">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/com.springsource.org.hibernate/3.2.6.ga/com.springsource.org.hibernate-3.2.6.ga.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/com.springsource.org.hibernate/3.2.6.ga/com.springsource.org.hibernate-3.2.6.ga-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/com.springsource.org.hibernate/3.2.6.ga/com.springsource.org.hibernate-3.2.6.ga-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

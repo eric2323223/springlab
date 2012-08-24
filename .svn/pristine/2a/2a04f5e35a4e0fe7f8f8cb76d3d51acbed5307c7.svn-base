@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>selenium</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">selenium</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/FinanceManager/person/form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>firstName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>firstName</td>
+	<td>Montgomery</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>lastName</td>
+	<td>Burns</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>monty@nuclear.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>Smithers</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetName</td>
+	<td>Powerstation</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetNumber</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>city</td>
+	<td>Springfield</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>zipCode</td>
+	<td>99999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>state</td>
+	<td>Ohio</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>country</td>
+	<td>USA</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>firstName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>firstName</td>
+	<td>Waylon</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>lastName</td>
+	<td>Smithers</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>waylon@nuclear.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>Monty</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetName</td>
+	<td>Powerstation</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetNumber</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>city</td>
+	<td>Springfield</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>zipCode</td>
+	<td>99999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>state</td>
+	<td>Ohio</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>country</td>
+	<td>USA</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>firstName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>firstName</td>
+	<td>Homer</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>lastName</td>
+	<td>Simpson</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>homer@simpsons.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>Marge</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetName</td>
+	<td>Evergreen Terrace</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetNumber</td>
+	<td>99a</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>city</td>
+	<td>Springfield</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>zipCode</td>
+	<td>99999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>state</td>
+	<td>Ohio</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>country</td>
+	<td>USA</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>firstName</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>firstName</td>
+	<td>Nad</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>lastName</td>
+	<td>Flanders</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>nad@flandersfamily.org</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>Homer</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetName</td>
+	<td>Evergreen Terrace</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>streetNumber</td>
+	<td>99b</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>city</td>
+	<td>Springfield</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>zipCode</td>
+	<td>99999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>state</td>
+	<td>Ohio</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>country</td>
+	<td>USA</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Cash Product</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name_cash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name_cash</td>
+	<td>Cash Account</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>description_cash</td>
+	<td>a cash account</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>managementFee_cash</td>
+	<td>1.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>interest_cash</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed_cash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Managed Fund Product</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>Global Investments</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>description</td>
+	<td>This fund invests in all shares which have the least potential.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>managementFee</td>
+	<td>2.8</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>fundId</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fundId</td>
+	<td>A55577</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>distribution</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>currentUnitPrice</td>
+	<td>1.23</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed_managedFund</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Loan Product</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name_loan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name_loan</td>
+	<td>Home Loan</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>widget_description_loan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>description_loan</td>
+	<td>A unethical loan.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>managementFee_loan</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>interest_loan</td>
+	<td>15.9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>principal_loan</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>lenders</td>
+	<td>label=Montgomery Burns, Springfield, monty@nuclear.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed_loan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/FinanceManager/account/form</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>Nad Flanders Account</td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>owners</td>
+	<td>label=Nad Flanders, Springfield, nad@flandersfamily.org</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/FinanceManager/account/form</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>Homer Simpson Loan Account</td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>owners</td>
+	<td>label=Homer Simpson, Springfield, homer@simpsons.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>newInvestmentButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>unit</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>initialUnitPrice</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>transactionDate</td>
+	<td>03/03/09</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/FinanceManager/account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Show Account']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>newInvestmentButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>unit</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>initialUnitPrice</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>transactionDate</td>
+	<td>02/02/09</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>proceed</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.appfuse:appfuse-spring:war:2.0-m5">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/appfuse/appfuse-spring/2.0-m5/appfuse-spring-2.0-m5.war!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/appfuse/appfuse-spring/2.0-m5/appfuse-spring-2.0-m5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/appfuse/appfuse-spring/2.0-m5/appfuse-spring-2.0-m5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

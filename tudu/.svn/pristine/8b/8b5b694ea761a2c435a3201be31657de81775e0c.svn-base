@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<j2eesettings version="600">
+<moduleversion>23</moduleversion>
+<webcontent>src/webapp</webcontent>
+<context-root>tudu</context-root>
+</j2eesettings>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<!-- this is the typical setup to secure the complete flow, 
+		commented out because Spring Security 3 is currently not compatible with SWF 2.0.7
+	<secured attributes="ROLE_ADMIN"/>-->
+	
+	<persistence-context />
+	
+	<view-state id="createNewPerson" model="person">
+		<!-- this is the typical setup to secure this view state, 
+			commented out because Spring Security 3 is currently not compatible with SWF 2.0.7
+		<secured attributes="ROLE_ADMIN"/>-->
+		<on-entry>
+			<evaluate expression="personBean" result="viewScope.person" />
+		</on-entry>
+		<transition on="person" to="createNewPerson">
+			<evaluate expression="personService.persist(person)" />
+		</transition>
+		<transition on="product" to="createNewProduct">
+			<evaluate expression="personService.persist(person)" />
+		</transition>
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="createNewProduct">
+		<transition on="cash" to="createNewCashProduct" />
+		<transition on="loan" to="createNewLoanProduct" />
+		<transition on="managedFund" to="createNewManagedFundProduct" />
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="createNewCashProduct" model="cash">
+		<on-entry>
+			<evaluate expression="cashBean" result="viewScope.cash" />
+		</on-entry>
+		<transition on="account" to="openNewAccount">
+			<evaluate expression="productService.persist(cash)" />
+		</transition>
+		<transition on="product" to="createNewProduct">
+			<evaluate expression="productService.persist(cash)" />
+		</transition>
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="createNewLoanProduct" model="loan">
+		<binder>
+			<binding property="id" converter="long" />
+		</binder>
+		<on-entry>
+			<evaluate expression="loanBean" result="viewScope.loan" />
+			<evaluate expression="personService.findAll()" result="viewScope.lenders" />
+		</on-entry>
+
+		<transition on="account" to="openNewAccount">
+			<evaluate expression="productService.persist(loan)" />
+		</transition>
+		<transition on="product" to="createNewProduct">
+			<evaluate expression="productService.persist(loan)" />
+		</transition>
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="createNewManagedFundProduct" model="managedFund">
+		<on-entry>
+			<evaluate expression="managedFundBean" result="viewScope.managedFund" />
+		</on-entry>
+		<transition on="account" to="openNewAccount">
+			<evaluate expression="productService.persist(managedFund)" />
+		</transition>
+		<transition on="product" to="createNewProduct">
+			<evaluate expression="productService.persist(managedFund)" />
+		</transition>
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="openNewAccount" model="account">
+		<on-entry>
+			<evaluate expression="accountBean" result="flowScope.account" />
+			<evaluate expression="personService.findAll()" result="viewScope.people" />
+		</on-entry>
+		<transition on="showAccount" to="showAccount" />
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+
+	<view-state id="showAccount">
+		<on-entry>
+			<evaluate expression="investmentBean" result="viewScope.investment" />
+			<evaluate expression="productService.findAll()" result="viewScope.products" />
+		</on-entry>
+		<transition on="success" to="success" />
+	</view-state>
+	
+	<end-state id="success" view="success"/>
+
+	<end-state id="cancel" view="cancel"/>
+
+</flow>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan base-package="net.stsmedia.financemanager" />
+	
+	<tx:annotation-driven />
+
+	<context:property-placeholder location="classpath:database.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="FinanceManager" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="${database.platform}" />
+				<property name="showSql" value="${database.showSql}" />
+				<property name="generateDdl" value="${database.generateDdl}" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
+	<!-- These beans are only created to pre-populate an admin user -->
+	<bean id="adminUser" class="net.stsmedia.financemanager.domain.Person">
+		<property name="firstName" value="Super" />
+		<property name="lastName" value="Admin" />		
+		<!-- this is the login email for the admin user -->
+		<property name="email" value="super@admin.com" />
+		<!-- and this is the password -->
+		<property name="password" value="admin" />
+		<property name="address">
+			<bean class="net.stsmedia.financemanager.domain.Address">
+				<property name="streetName" value="Some Street" />
+				<property name="streetNumber" value="99" />
+				<property name="city" value="SpringField" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="adminAuthority" class="net.stsmedia.financemanager.security.Authorities">
+		<property name="authority" value="ROLE_ADMIN" />
+		<property name="username" value="super@admin.com" />
+	</bean>
+</beans>
