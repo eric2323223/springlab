@@ -1,0 +1,21 @@
+<filter name="template" value="${OBJECT_NAME}:${alias}" />
+
+<property name="OBJECT_NAME" value="java.lang:type=Memory" />
+<metric name="Heap Memory Used" units="B" indicator="true" alias="Composite.HeapMemoryUsage.used" />
+<metric name="Heap Memory Max" units="B" collectionType="static" alias="Composite.HeapMemoryUsage.max" />
+
+<property name="OBJECT_NAME" value="java.lang:type=Threading" />
+<metric name="Thread Count" category="UTILIZATION" indicator="true" />
+<metric name="Daemon Thread Count" category="UTILIZATION" indicator="true" />
+
+<plugin type="control" class="org.hyperic.hq.product.jmx.MxControlPlugin" />
+<actions include="gc" />
+<property name="OBJECT_NAME.gc" value="java.lang:type=Memory" />
+
+<service name="Garbage Collector">
+	<plugin type="autoinventory" />
+	<property name="OBJECT_NAME" value="java.lang:type=GarbageCollector,name=*" />
+	<metric name="Availability" indicator="true" />
+	<metric name="Collection Count" indicator="false" category="THROUGHPUT" collectionType="trendsup" />
+	<metric name="Collection Time" indicator="false" category="THROUGHPUT" collectionType="trendsup" units="ms" />
+</service>

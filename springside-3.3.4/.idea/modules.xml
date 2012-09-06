@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/examples/mini-service/mini-service.iml" filepath="$PROJECT_DIR$/examples/mini-service/mini-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/mini-web/mini-web.iml" filepath="$PROJECT_DIR$/examples/mini-web/mini-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tools/maven/archetype/mini-web-archetype.iml" filepath="$PROJECT_DIR$/tools/maven/archetype/mini-web-archetype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/showcase/showcase.iml" filepath="$PROJECT_DIR$/examples/showcase/showcase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springside3.iml" filepath="$PROJECT_DIR$/springside3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/core/springside3-core.iml" filepath="$PROJECT_DIR$/modules/core/springside3-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/extension/springside3-extension.iml" filepath="$PROJECT_DIR$/modules/extension/springside3-extension.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/parent/springside3-parent.iml" filepath="$PROJECT_DIR$/modules/parent/springside3-parent.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE plugin [
+  <!ENTITY jvm-jmx-metrics SYSTEM "/pdk/plugins/jvm-jmx-metrics.xml">
+  <!ENTITY process-metrics SYSTEM "/pdk/plugins/process-metrics.xml">
+]>
+
+<plugin package="org.hyperic.hq.plugin.jetty">
+
+	<classpath>
+		<include name="pdk/lib/mx4j" />
+	</classpath>
+
+	<filter name="template" value="${OBJECT_NAME}:${alias}" />
+
+	<metrics name="Jetty IO">
+		<metric name="Connections" alias="connections" category="THROUGHPUT" collectionType="trendsup" rate="1s"
+			indicator="true" />
+		<metric name="Connections Duration Ave" alias="connectionsDurationAve" category="THROUGHPUT" units="ms"
+			indicator="true" />
+		<metric name="Connections Open" alias="connectionsOpen" category="THROUGHPUT" indicator="true" />
+		<metric name="Connections Requests Ave" alias="connectionsRequestsAve" category="THROUGHPUT" indicator="true" />
+		<metric name="Requests" alias="requests" category="THROUGHPUT" collectionType="trendsup" rate="1s" indicator="true" />
+	</metrics>
+
+	<metrics name="Jetty ThreadPool">
+		<metric name="Jetty Threads" alias="threads" category="THROUGHPUT" indicator="true" />
+		<metric name="Jetty Queue Size" alias="queueSize" category="THROUGHPUT" indicator="false" />
+		<metric name="Jetty Idle Threads" alias="idleThreads" category="THROUGHPUT" indicator="false" />
+		<metric name="Jetty Max Threads" alias="maxThreads" category="THROUGHPUT" collectionType="static" indicator="false" />
+	</metrics>
+
+
+	<server name="Jetty" version="6.x">
+		<!-- derive installpath from -Djetty.home=... -->
+		<property name="PROC_HOME_PROPERTY" value="jetty.home" />
+		<property name="VERSION_FILE" value="lib/jetty-6.*.jar" />
+
+		<property name="HAS_BUILTIN_SERVICES" value="true" />
+		<property name="DEFAULT_PROGRAM" value="bin/jetty.sh" />
+		<property name="DEFAULT_LOG_FILE" value="logs/jetty.log" />
+
+		<property name="domain" value="Jetty" />
+
+		<config include="jmx">
+			<option name="process.query" description="Process Query" default="State.Name.eq=java,Args.*.ct=start.jar" />
+		</config>
+
+		<plugin type="autoinventory" class="org.hyperic.hq.product.jmx.MxServerDetector" />
+		<plugin type="measurement" class="org.hyperic.hq.product.jmx.MxMeasurementPlugin" />
+		<plugin type="log_track" class="org.hyperic.hq.product.jmx.MxNotificationPlugin" />
+		<plugin type="log_track" class="org.hyperic.hq.product.Log4JLogTrackPlugin" />
+
+		<metric name="Availability" template="sigar:Type=ProcState,Arg=%process.query%:State" indicator="true" />
+	
+	    &process-metrics;
+
+    	&jvm-jmx-metrics;
+
+		<property name="OBJECT_NAME" value="org.mortbay.thread:type=queuedthreadpool,id=0" />
+		<metrics include="Jetty ThreadPool" />
+
+		<service name="Jetty IO">
+			<plugin type="autoinventory" />
+			<property name="domain" value="org.mortbay.jetty.nio" />
+			<property name="OBJECT_NAME" value="${domain}:type=*,id=*" />
+			<metrics include="Jetty IO" />
+		</service>
+	</server>
+
+	<!-- ==================== Plugin Help =========================== -->
+	<help name="Jetty">
+  <![CDATA[
+  <p>
+  <h3>Configure HQ for monitoring Jetty</h3>
+  </p>
+  <p>
+  1) Configure Jetty's JMX statistics collection follow the instructions on: 
+  <a href="http://docs.codehaus.org/display/JETTY/Statistics">Jetty JMX Stats configuration</a>
+  </p>
+  <p>
+  2) Add this line to the top of the &lt;jetty_home&gt;/bin/jetty.sh file
+  <br>
+  JAVA_OPTIONS="-Dcom.sun.management.jmxremote \
+  <br>
+  -Dcom.sun.management.jmxremote.port=6969 \
+  <br>
+  -Dcom.sun.management.jmxremote.ssl=false \
+  <br>
+  -Dcom.sun.management.jmxremote.authenticate=false $JAVA_OPTIONS"
+  <br>
+  export JAVA_OPTIONS
+  </p>
+  ]]>
+	</help>
+	<help name="Jetty 6.x" include="Jetty" />
+</plugin>

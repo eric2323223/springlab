@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Using Spring Data JPA To Reduced Data Repository Coding</title>
+</head>
+<body>
+<h3>Introduction</h3>
+<p>On March 24, 2011, springsource released milestone 2 of the Spring Data JPA library.  Per the 
+<a href="http://www.springsource.org/spring-data" target="_blank">Spring Data project website</a>,
+Spring Data JPA:</p>
+
+<blockquote>
+Simplifies the development of creating a JPA-based data access layer and provides 'cross-store' persistence functionality for JPA managed entites [sic].
+</blockquote>
+
+<p>Since I recently started using JPA 2 in my Spring applications, I decided to learn more about Spring Data JPA.
+To assist my learning, I took an 
+<a href="http://www.brucephillips.name/blog/index.cfm/2010/12/28/Recommended-Way-To-Structure-A-Spring-3-JPA-2-and-Maven-Web-Application" 
+target="_blank">example project</a> that uses Struts 2, Spring 3, JPA 2 (with Hibernate 3.5 as the JPA 
+provider) and modified it to use Spring Data JPA.  This blog article is about what I had to modify so the 
+project could use Spring Data JPA and what I could then get rid of.</p>
+
+<h3>Example Application That Uses Spring Data JPA</h3>
+
+<p><a href="http://www.brucephillips.name/spring/strutsspringdataexample.zip">Download the example application</a> that 
+uses Spring Data JPA. It is a standard Maven project, created using Eclipse 3.6. The application uses an in-memory database 
+(HSQL) that is setup by the Spring applicationContext.xml class. See files schema.sql and test-data.sql in src/main/resources 
+for the schema created during the application's startup and the initial records inserted into the table's database. 
+Using the in-memory database means there is no need to setup and run a separate database server for the example application.
+
+<p>You can import this project into Eclipse by using Eclipse's File - Import feature. In the project's root folder is a 
+README.txt file that explains how to run the application. 
+If you're not using Eclipse with the Maven plugin, you can unzip the archived download and 
+view the source code in any text editor. If you are using a Java IDE that enables importing of Maven projects you should be able to import the unzipped project.</p>
+
+<p>You can also run the application using Maven directly if you have downloaded and installed Maven on your computer. 
+Open a terminal (command) window and navigate to the project's root folder (the folder where pom.xml resides). 
+Then in the terminal window issue these commands:</p>
+<ol>
+<li>mvn clean</li>
+<li>mvn test (All tests should pass successfully)</li>
+<li>mvn jetty:run</li>
+</ol>
+
+<p>When you see [INFO] Started Jetty Server open a web browser and navigate to http://localhost:8080/strutsspringdataexample/index.jsp. 
+Enter 1, 2, or 3 in the employee id text field and click submit.</p>
+
+<p>To stop the Jetty web server type CTRL-C in the terminal window.</p>
+
+<h3>How To Enable Spring Data JPA In Your Project</h3>
+
+<p>To use the Spring Data JPA library I had to add the Spring milestone repository to the project's pom.xml file.</p>
+
+<code>
+
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+
+</code>
+
+<p>I also added the dependency node for the Spring Data JPA artifact.  Note the version current as of 
+March 25, 2011 is 1.0.0.M2 but that will change as the project moves forward. Consult the 
+<a href="http://www.springsource.org/spring-data" target="_blank">Spring Data project website</a>
+for the current version.</p>
+
+<code>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.0.0.M2</version>
+		</dependency>
+
+</code>
+
+<p>To use the Spring Data JPA's namespace in my Spring configuration file I added this namespace
+declaration and schema location:</p>
+
+<code>
+
+  xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+  
+  http://www.springframework.org/schema/data/jpa 
+  http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+
+</code>
+
+<p>To enable Spring to find the Repository bean (more on this in a moment) I also added this 
+node to the Spring configuration file:</p>
+
+<code>
+
+&lt;jpa:repositories base-package="name.brucephillips.springjpaexample.repository" /&gt;	
+
+</code>
+
+<p>The above tells Spring to look in package name.brucephillips.springjpaexample.repository for 
+any interfaces annotated with the @Repository annotation or an interface that extends one of 
+the Spring Data JPA interfaces.</p>
+
+<h3>How To Use Spring Data JPA To Reduce Data Repository Code</h3>
+
+<p>If you examine the source code for the previous <a href="http://www.brucephillips.name/blog/index.cfm/2010/12/28/Recommended-Way-To-Structure-A-Spring-3-JPA-2-and-Maven-Web-Application" 
+target="_blank">example project</a> that did not use Spring Data JPA, you'll find that I defined a dao package with an interface and implementation class to enable 
+interaction between Person objects and the data repository.  The PersonDaoJpa class uses the JPA EntityManager to perform the basic CRUD tasks and to also find a 
+specific Person object using the Person class's emplid instance field.</p>
+
+<p>To convert that project to use Spring Data JPA, I deleted the dao package, the interface, and the implementation class.  Those are no longer needed when using 
+Spring Data JPA.  In the example application that does use Spring Data JPA, you'll find a repository package, with one interface:</p>
+
+<code>
+
+public interface PersonRepository extends JpaRepository&lt;Person, Long&gt; {
+	
+	/**
+	 * Get Person with the associated emplid.
+	 * @param emplid - Employee ID
+	 * @return Person object if provided emplid is 
+	 * found in the data repository, otherwise return null
+	 */
+	Person findByEmplid(Long emplid);
+
+}
+
+</code>
+
+<p>Note that the PersonRepository interface extends <a href="http://static.springsource.org/spring-data/data-jpa/docs/1.0.0.M2/api/org/springframework/data/jpa/repository/JpaRepository.html" 
+target="_blank"> interface JpaRepository</a>, which is provided by the Spring Data JPA library. The JpaRepository interface specifies all the standard CRUD methods my project 
+may need to use to manage Person objects with the data repository. Also note the use of &lt;Person, Long&gt;.  This tells Spring that this repository is for class 
+Person and that class Person's field annotated with @ID is type Long.</p>
+
+<p>What I did not need to code is an implementation of the PersonRepository interface. Spring will create an implementation of this interface and make a PersonRepository bean 
+available to be autowired into my Service class.  The PersonRepository bean will have all the standard CRUD methods (which will be transactional) and 
+return Person objects or collection of 
+Person objects.  So by using Spring Data JPA, I've saved writing my own implementation class.</p> 
+
+<p>The only code I needed to write in interface PersonRepository was for method declarations for any non-standard CRUD methods I want to use.  
+In this example, I want to find a Person by using
+his emplid value.  Note that emplid is defined as an instance field in class Person.  How I named this method is important.   Spring Data JPA will translate
+the method name into a JPA criteria query.  See the 
+<a href="http://static.springsource.org/spring-data/data-jpa/docs/1.0.0.M2/reference/html/" target = "_blank">Spring Data JPA documentation</a>
+ for more information about how Spring Data JPA translates method names into 
+queries.  Spring Data JPA does allow you to override its query translation from method name and specify your own query.</p>
+
+<h3>Modify The Service Class To Use The Spring Created Repository Bean</h3>
+
+<p>In my Service class (see PersonServiceImpl) I just needed to add an instance field for the JPA EntityManager and a field 
+for the PersonRepository object.  Both of these will automatically be provided to the class by Spring because of the 
+@PersistenceContext and @Autowired annotations.</p>
+
+<code>
+
+@PersistenceContext
+private EntityManager em;
+	
+@Autowired
+private PersonRepository personRepository;
+	
+
+</code>
+
+<p>Then I just replaced using the personDao object with using the personRepository object in the PersonServiceImpl class.</p>
+
+<p>All my JUnit tests passed and the application runs fine.</p>
+
+<h3>Summary</h3>
+
+<p>Spring Data JPA seems very useful in reducing the amount of data repository code you'll need to write.  If you're already using Spring 3 
+and JPA 2 then adding Spring Data JPA may be a good idea and should save development time.</p>
+<p>There is more Spring Data JPA can do including built-in support 
+for paging and sorting objects returned.  Consult the references below for additional information. </p>
+
+<h3>References</h3>
+
+<ol>
+	<li><a href="http://www.springsource.org/spring-data" target="_blank">Spring Data</a></li>
+
+<li><a href="http://static.springsource.org/spring-data/data-jpa/docs/1.0.0.M2/reference/html" target="_blank">Spring Data JPA - Reference Documentation</a></li>
+
+<li><a href="http://static.springsource.org/spring-data/data-jpa/docs/1.0.0.M2/api/" target="_blank">Spring Data JPA API</a></li>
+
+<li><a href="http://blog.springsource.com/2011/02/10/getting-started-with-spring-data-jpa/" target="_blank">Getting Started with Spring Data JPA, February 10, 2011</a></li>
+	
+
+
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+Thu Aug 30 17:17:40 CST 2012 Thread[main,5,main] Cleanup action starting
+java.sql.SQLException: Database 'myDB' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:154)
+	at org.apache.derby.impl.tools.ij.ij.dynamicConnection(Unknown Source)
+	at org.apache.derby.impl.tools.ij.ij.ConnectStatement(Unknown Source)
+	at org.apache.derby.impl.tools.ij.ij.ijStatement(Unknown Source)
+	at org.apache.derby.impl.tools.ij.utilMain.runScriptGuts(Unknown Source)
+	at org.apache.derby.impl.tools.ij.utilMain.go(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.go(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.mainCore(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.main(Unknown Source)
+	at org.apache.derby.tools.ij.main(Unknown Source)
+Caused by: java.sql.SQLException: Database 'myDB' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 23 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'myDB' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:154)
+	at org.apache.derby.impl.tools.ij.ij.dynamicConnection(Unknown Source)
+	at org.apache.derby.impl.tools.ij.ij.ConnectStatement(Unknown Source)
+	at org.apache.derby.impl.tools.ij.ij.ijStatement(Unknown Source)
+	at org.apache.derby.impl.tools.ij.utilMain.runScriptGuts(Unknown Source)
+	at org.apache.derby.impl.tools.ij.utilMain.go(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.go(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.mainCore(Unknown Source)
+	at org.apache.derby.impl.tools.ij.Main.main(Unknown Source)
+	at org.apache.derby.tools.ij.main(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+----------------------------------------------------------------
+Thu Aug 30 17:17:47 CST 2012: Shutting down Derby engine
+----------------------------------------------------------------
