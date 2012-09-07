@@ -29,6 +29,16 @@ public class Person {
     @Column(name="City")
     String city;
 
+    @Column(name="Money")
+    int money;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 
     public void setId_p(int id_p) {
         this.id_p = id_p;
@@ -72,6 +82,6 @@ public class Person {
     }
 
     public String toString() {
-        return this.firstName+" "+this.lastName;
+        return this.firstName+" "+this.lastName +" has "+ this.money+" bucks";
     }
 }

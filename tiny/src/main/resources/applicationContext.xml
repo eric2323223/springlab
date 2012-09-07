@@ -20,22 +20,23 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="testingSetup"/>
         <property name="dataSource" ref="dataSource"/>
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <!-- Create the database, please -->
-                <property name="generateDdl" value="true"/>
-            </bean>
-        </property>
+        <!--<property name="jpaVendorAdapter">-->
+            <!--<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
+                <!--&lt;!&ndash; Create the database, please &ndash;&gt;-->
+                <!--<property name="generateDdl" value="true"/>-->
+            <!--</bean>-->
+        <!--</property>-->
     </bean>
 
     <bean id="personDao" class="net.twasink.hsqldbtest.dao.PersonDao" />
+    <bean id="personService" class="net.twasink.hsqldbtest.service.PersonService"/>
 
     <context:annotation-config/>
 
-    <!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">-->
-        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
-    <!--</bean>-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
 
-    <!--<tx:annotation-driven/>-->
+    <tx:annotation-driven/>
 
 </beans>

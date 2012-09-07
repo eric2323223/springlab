@@ -23,8 +23,8 @@ public class PersonDao {
         return  entityManager.createQuery("from Person").getResultList();
     }
 
-    public Person getPersonByName(String name){
-        return new Person();
+    public void update(Person person) {
+
     }
 
 }

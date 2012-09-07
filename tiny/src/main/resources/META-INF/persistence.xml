@@ -8,13 +8,13 @@
         <class>net.twasink.hsqldbtest.Foo</class>
         <class>net.twasink.hsqldbtest.model.Person</class>
 
-        <properties>
-            <property name="hibernate.archive.autodetection" value="" />
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-            <!-- Could set this here, but we don't want it for normal use, so won't
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
-            -->
-        </properties>
+        <!--<properties>-->
+            <!--<property name="hibernate.archive.autodetection" value="" />-->
+            <!--<property name="hibernate.show_sql" value="true"/>-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
+            <!--&lt;!&ndash; Could set this here, but we don't want it for normal use, so won't-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <!--&ndash;&gt;-->
+        <!--</properties>-->
     </persistence-unit>
 </persistence>

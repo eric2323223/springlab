@@ -1,6 +1,7 @@
 package net.twasink.hsqldbtest;
 
 import net.twasink.hsqldbtest.dao.PersonDao;
+import net.twasink.hsqldbtest.service.PersonService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,5 +18,8 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         PersonDao personDao = (PersonDao) context.getBean("personDao");
         System.out.println(personDao.getAllPersons().get(0).toString());
+
+        PersonService personService = (PersonService) context.getBean("personService");
+//        personService.rename(1, "John Doe");
     }
 }

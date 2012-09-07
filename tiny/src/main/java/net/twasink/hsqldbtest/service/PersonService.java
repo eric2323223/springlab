@@ -1,7 +1,10 @@
 package net.twasink.hsqldbtest.service;
 
 import net.twasink.hsqldbtest.dao.PersonDao;
+import net.twasink.hsqldbtest.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,11 +13,20 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 10:48 AM
  * To change this template use File | Settings | File Templates.
  */
+@Service
 public class PersonService {
     @Autowired
     PersonDao personDao;
 
-    public void rename(String origin, String newName) {
-
+    @Transactional
+    public void transferMoney(Person from, Person to, int amount) {
+        int balance = from.getMoney();
+        from.setMoney(from.getMoney()-amount);
+        personDao.update(from);
+        if(amount>balance){
+            throw new MenoyTransferException();
+        }
+        to.setMoney(to.getMoney()+amount);
+        personDao.update(to);
     }
 }
