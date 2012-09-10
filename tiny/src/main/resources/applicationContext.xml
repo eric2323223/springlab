@@ -4,11 +4,13 @@
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/data/jpa  http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 ">
 
     <jdbc:embedded-database id="dataSource" type="HSQL">
@@ -30,6 +32,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
     <bean id="personDao" class="net.twasink.hsqldbtest.dao.PersonDao" />
     <bean id="personService" class="net.twasink.hsqldbtest.service.PersonService"/>
+    <bean id="contactDao" class="net.twasink.hsqldbtest.dao.ContactRepository"/>
 
     <context:annotation-config/>
 
@@ -38,5 +41,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
 
     <tx:annotation-driven/>
+
+    <jpa:repositories base-package="com.apress.prospring3.ch13.repository"
+                      entity-manager-factory-ref="emf"
+                      transaction-manager-ref="transactionManager"/>
 
 </beans>

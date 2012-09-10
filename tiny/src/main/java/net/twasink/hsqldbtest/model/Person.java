@@ -1,6 +1,9 @@
 package net.twasink.hsqldbtest.model;
 
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,6 +17,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Persons")
+@NamedQueries({
+        @NamedQuery(name="Person.findByName",query = "select c from Person c where c.firstName = :firstname") ,
+        @NamedQuery(name="Person.getRichest", query = "select c from Person c order by c.money")
+})
 public class Person {
     @javax.persistence.Id
     @Column(name = "Id_P")

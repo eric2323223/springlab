@@ -23,9 +23,14 @@ public class PersonService {
         int balance = from.getMoney();
         from.setMoney(from.getMoney()-amount);
         personDao.update(from);
-        if(amount>balance){
-            throw new MenoyTransferException();
+//        if(amount>balance){
+//            throw new MenoyTransferException();
+//        }
+
+        if(Math.random()>0.5) {
+//            throw new DataAccessException();
         }
+
         to.setMoney(to.getMoney()+amount);
         personDao.update(to);
     }

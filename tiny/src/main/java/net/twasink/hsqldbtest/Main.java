@@ -18,7 +18,8 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         PersonDao personDao = (PersonDao) context.getBean("personDao");
         System.out.println(personDao.getAllPersons().get(0).toString());
-
+        System.out.println(personDao.getPersonByName("peng"));
+        System.out.println(personDao.getPoolest());
         PersonService personService = (PersonService) context.getBean("personService");
 //        personService.rename(1, "John Doe");
     }
