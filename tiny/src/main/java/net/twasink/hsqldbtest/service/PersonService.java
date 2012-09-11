@@ -1,6 +1,7 @@
 package net.twasink.hsqldbtest.service;
 
 import net.twasink.hsqldbtest.dao.PersonDao;
+import net.twasink.hsqldbtest.exception.MyException;
 import net.twasink.hsqldbtest.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class PersonService {
     @Autowired
     PersonDao personDao;
 
-    @Transactional
+    @Transactional(rollbackFor = MyException.class)
     public void transferMoney(Person from, Person to, int amount) {
         int balance = from.getMoney();
         from.setMoney(from.getMoney()-amount);
@@ -27,11 +28,20 @@ public class PersonService {
 //            throw new MenoyTransferException();
 //        }
 
-        if(Math.random()>0.5) {
-//            throw new DataAccessException();
-        }
 
         to.setMoney(to.getMoney()+amount);
         personDao.update(to);
+
+        if(Math.random()>0.5) {
+            throw new MyException();
+        }
+    }
+
+    @Transactional(rollbackFor = MyException.class)
+    public void sayHello() throws Exception {
+        if(Math.random()>0.1){
+            throw new MyException();
+        }
+        System.out.println("Hellooooo!");
     }
 }

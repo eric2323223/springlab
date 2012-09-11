@@ -28,6 +28,7 @@ public class PersonDao {
     }
 
     public Person getPersonByName(String name) {
+
         return entityManager.createNamedQuery("Person.findByName", Person.class).setParameter("firstname", name).getSingleResult();
     }
 
