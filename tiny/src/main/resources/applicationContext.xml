@@ -13,10 +13,19 @@
         http://www.springframework.org/schema/data/jpa  http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 ">
 
-    <jdbc:embedded-database id="dataSource" type="HSQL">
-        <jdbc:script location="schema.sql"/>
-        <jdbc:script location="test-data.sql"/>
-    </jdbc:embedded-database>
+    <!--<jdbc:embedded-database id="dataSource" type="HSQL">-->
+        <!--<jdbc:script location="schema.sql"/>-->
+        <!--<jdbc:script location="test-data.sql"/>-->
+    <!--</jdbc:embedded-database>-->
+
+
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource">
+        <property name = "driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
+        <property name="url" value="jdbc:derby://localhost:1527/MyDb:create=true"/>
+        <property name="username" value="sysdba"/>
+        <property name="password" value="masterkey"/>
+    </bean>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -42,8 +51,8 @@
 
     <tx:annotation-driven/>
 
-    <jpa:repositories base-package="com.apress.prospring3.ch13.repository"
-                      entity-manager-factory-ref="emf"
-                      transaction-manager-ref="transactionManager"/>
+    <!--<jpa:repositories base-package="com.apress.prospring3.ch13.repository"-->
+                      <!--entity-manager-factory-ref="emf"-->
+                      <!--transaction-manager-ref="transactionManager"/>-->
 
 </beans>

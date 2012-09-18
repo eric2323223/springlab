@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="spitter-service"/>
+		<property name="service" ref="spitterService"/>
+		<property name="serviceInterface" value="com.john.springinaction.service.SpitterService"/>
+		<property name="registryPort" value="1234"/>
+	</bean>
+	
+	<bean id="spitterService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://localhost:1234/spitter-service"/>
+		<property name="serviceInterface" value="com.john.springinaction.service.SpitterService"/>
+	</bean>
+	
+</beans>
